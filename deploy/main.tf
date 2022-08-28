@@ -41,7 +41,7 @@ resource "aws_subnet" "subnet-1" {
   availability_zone = "us-east-1"
 
   tags = {
-    Name = "pord-subnet"
+    Name = "prod-subnet"
   }
 }
 # 5.- Associate Subnet with Route Table
