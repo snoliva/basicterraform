@@ -20,3 +20,9 @@ In this project let's build a simple EC2 instance with your VPC in AWS. Contain 
 `terraform apply:` Execute the actions proposed in a Terraform plan.
 
 ## How to use terraform in docker-compose?
+
+For run terraform in docker:
+
+```
+docker-compose -f deploy/docker-compose.yml run --rm terraform <name_of_command>
+```
