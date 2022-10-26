@@ -26,3 +26,7 @@ For run terraform in docker:
 ```
 docker-compose -f deploy/docker-compose.yml run --rm terraform <name_of_command>
 ```
+
+# Update v1.0.0
+
+Added file buckets3.tf that contain an example how to create a simple s3 bucket.
