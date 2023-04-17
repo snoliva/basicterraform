@@ -95,11 +95,8 @@ jobs:
     - name: Terraform Plan
       run: terraform -chdir=./S3-BUCKET plan -input=false
       
-    - name: Print
-      run: echo github.ref
-    
     - name: Print other echo
-      run: echo {{github.ref}}
+      run: echo "::data {github.ref}"
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
