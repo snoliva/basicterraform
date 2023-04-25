@@ -76,6 +76,21 @@ resource "aws_nat_gateway" "public-subnet" {
     tomap({ "Name" = "${local.prefix}-public" })
   )
 }
+# Network ACL
+resource "aws_network_acl" "public-acl" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    local.common_tags,
+    tomap({ "Name" = "${local.prefix}-public" })
+  )
+
+}
+
+resource "aws_network_acl_association" "public-acl" {
+  network_acl_id = aws_network_acl.public-acl.id
+  subnet_id = aws_subnet.public-subnet.id
+}
 
 ####################################################
 # Private Subnet                                   #
@@ -105,6 +120,22 @@ resource "aws_route_table_association" "private" {
   subnet_id = aws_subnet.private-subnet.id
   route_table_id = aws_route_table.private-subnet.id
 }
+
+# Network ACL
+resource "aws_network_acl" "private-acl" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    local.common_tags,
+    tomap({ "Name" = "${local.prefix}-private" })
+  )
+}
+
+resource "aws_network_acl_association" "private-acl" {
+  network_acl_id = aws_network_acl.private-acl.id
+  subnet_id = aws_subnet.private-subnet.id
+}
+
 
 ####################################################
 #                Security Group                    #
